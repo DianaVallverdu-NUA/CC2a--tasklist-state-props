@@ -2,12 +2,16 @@
 import { useState } from "react";
 
 // react native
-import { Button, TextInput, View } from "react-native";
+import { Button, StyleProp, TextInput, View, ViewStyle } from "react-native";
 
 // types & interfaces
 interface AddTaskProps {
   addTask: (task: string) => void;
 }
+
+// custom styles
+const mainViewStyle = { flexDirection: "row", margin: 10}  as StyleProp<ViewStyle>;
+const textInputStyle = { backgroundColor: "white" };
 
 // main class
 const AddTask = (props: AddTaskProps) => {
@@ -24,12 +28,12 @@ const AddTask = (props: AddTaskProps) => {
 
   // JSX
   return (
-    <View style={{ flexDirection: "row", margin: 10 }}>
+    <View style={mainViewStyle}>
       {/* task description input */}
       <TextInput
         value={task}
         onChangeText={setTask}
-        style={{ backgroundColor: "white" }}
+        style={textInputStyle}
       ></TextInput>
 
       {/* button to add task to main list */}

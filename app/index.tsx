@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 // react native
-import { View } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 // custom
 import AddTask from "@/components/AddTask";
@@ -15,6 +15,12 @@ type IdDescriptionPair = {
   id: number;
   description: string;
 };
+
+const mainViewStyle = {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+} as StyleProp<ViewStyle>;
 
 // main class
 export default function Index() {
@@ -46,13 +52,7 @@ export default function Index() {
 
   // JSX
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <View style={mainViewStyle}>
       {/* Title with custom name */}
       <SetName setMyName={setMyName} />
       <Title myName={myName} />

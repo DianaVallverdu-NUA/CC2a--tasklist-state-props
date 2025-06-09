@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, Text, View } from "react-native";
+import {
+  Button,
+  StyleProp,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
 interface TaskProps {
   description: string;
@@ -23,20 +30,24 @@ const Task = (props: TaskProps) => {
     deleteTask(id);
   };
 
+  // styles
+  const mainViewStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+  } as StyleProp<ViewStyle>;
+
+  const textStyle = {
+    textDecorationLine: checked ? "line-through" : "none",
+    margin: 5,
+  } as StyleProp<TextStyle>;
+
   return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <View style={mainViewStyle}>
       {/* checkbox input */}
       <input type="checkbox" onChange={onCheckboxChange}></input>
 
       {/* display task description */}
-      <Text
-        style={{
-          textDecorationLine: checked ? "line-through" : "none",
-          margin: 5,
-        }}
-      >
-        {description}
-      </Text>
+      <Text style={textStyle}>{description}</Text>
 
       {/* button to delete task from main tasklist */}
       <Button

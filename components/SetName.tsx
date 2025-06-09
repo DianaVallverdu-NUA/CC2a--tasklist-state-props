@@ -2,12 +2,23 @@
 import { useState } from "react";
 
 // react native
-import { Button, TextInput, View } from "react-native";
+import {
+  Button,
+  StyleProp,
+  TextInput,
+  TextStyle,
+  View,
+  ViewStyle,
+} from "react-native";
 
 // types & interfaces
 interface SetNameProps {
   setMyName: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
+
+// styles
+const mainViewStyle = { flexDirection: "row" } as StyleProp<ViewStyle>;
+const textInputStyle = { backgroundColor: "white" } as StyleProp<TextStyle>;
 
 // main class
 const SetName = (props: SetNameProps) => {
@@ -23,12 +34,12 @@ const SetName = (props: SetNameProps) => {
   };
 
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={mainViewStyle}>
       {/* Name input */}
       <TextInput
         value={newName}
         onChangeText={setNewName}
-        style={{ backgroundColor: "white" }}
+        style={textInputStyle}
       ></TextInput>
 
       {/* Button to update from main component */}
