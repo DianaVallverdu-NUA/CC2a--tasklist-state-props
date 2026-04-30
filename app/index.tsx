@@ -18,7 +18,7 @@ type IdDescriptionPair = {
 
 const mainViewStyle = {
   flex: 1,
-  justifyContent: "center",
+  marginTop: 10,
   alignItems: "center",
 } as StyleProp<ViewStyle>;
 
@@ -58,16 +58,18 @@ export default function Index() {
       <Title myName={myName} />
 
       {/* Display tasks */}
-      {taskList.map((task) => {
-        return (
-          <Task
-            key={task.id}
-            id={task.id}
-            description={task.description}
-            deleteTask={deleteTask}
-          />
-        );
-      })}
+      <View>
+        {taskList.map((task) => {
+          return (
+            <Task
+              key={task.id}
+              id={task.id}
+              description={task.description}
+              deleteTask={deleteTask}
+            />
+          );
+        })}
+      </View>
 
       {/* Add New Task */}
       <AddTask addTask={addTask} />

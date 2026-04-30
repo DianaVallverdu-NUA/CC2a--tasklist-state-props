@@ -1,6 +1,9 @@
+// react
 import { useState } from "react";
+
+// react native
 import {
-  Button,
+  Image,
   StyleProp,
   Text,
   TextStyle,
@@ -8,11 +11,32 @@ import {
   ViewStyle,
 } from "react-native";
 
+// interfaces & types
 interface TaskProps {
   description: string;
   id: number;
   deleteTask: (taskId: number) => void;
 }
+
+// styles
+const mainViewStyle = {
+  flexDirection: "row",
+  marginVertical: 5,
+  justifyContent: 'space-between'
+} as StyleProp<ViewStyle>;
+
+const leftViewStyle = {
+  flexDirection: "row",
+  alignItems: "center",
+  maxWidth: 200
+} as StyleProp<ViewStyle>;
+
+// styles
+const deleteButtonStyle = {
+  borderRadius : 5,
+  backgroundColor: "rgb(255, 100, 100)",
+  borderWidth: 0,
+};
 
 const Task = (props: TaskProps) => {
   // extract props
@@ -30,12 +54,7 @@ const Task = (props: TaskProps) => {
     deleteTask(id);
   };
 
-  // styles
-  const mainViewStyle = {
-    flexDirection: "row",
-    alignItems: "center",
-  } as StyleProp<ViewStyle>;
-
+  // state dependent style
   const textStyle = {
     textDecorationLine: checked ? "line-through" : "none",
     margin: 5,
@@ -43,18 +62,24 @@ const Task = (props: TaskProps) => {
 
   return (
     <View style={mainViewStyle}>
-      {/* checkbox input */}
-      <input type="checkbox" onChange={onCheckboxChange}></input>
+      {/* left - checkbox & text */}
+      <View style={leftViewStyle}>
+        {/* checkbox input */}
+        <input type="checkbox" onChange={onCheckboxChange}></input>
 
-      {/* display task description */}
-      <Text style={textStyle}>{description}</Text>
+        {/* display task description */}
+        <Text style={textStyle}>{description}</Text>
+      </View>
 
-      {/* button to delete task from main tasklist */}
-      <Button
-        color="red"
-        title="Delete Task"
-        onPress={onDeleteHandler}
-      ></Button>
+      {/* right - delete button */}
+      <View>
+        {/* button to delete task from main tasklist */}
+        <button
+          style={deleteButtonStyle}
+          onClick={onDeleteHandler}>
+        <Image source={require("../assets/icons/delete.svg")}></Image>
+        </button>
+      </View>
     </View>
   );
 };
